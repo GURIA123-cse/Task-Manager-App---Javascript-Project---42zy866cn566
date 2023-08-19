@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .task {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+        .test1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="task" id="open-task" draggable="true" ondragstart="drag(event)">
+        <div class="task-progress"></div>
+        <p class="task-description">Finish reading intro to UI/Ux</p>
+        <div class="progress"></div>
+    </div>
+
+    <div id="drop-target" ondragover="allowDrop(event)" ondrop="drop(event)">
+        Drop Here
+    </div>
+    <div class="test1" inprocess="true" id="idtest"></div>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        const test = document.querySelector("[inprocess]");
+    </script>
+</body>
+</html>
